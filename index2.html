@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Registration System - Manage student records with add, edit, and delete functionalities">
+    <meta name="keywords" content="student registration, student management, education system">
+    <meta name="author" content="Student Management Team">
+    <title>Student Registration System | Manage Student Records</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #6a5acd, #836fff);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  gap: 20px;
+}
+
+/* Sections */
+.form-section,
+.display-section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Form */
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-btn {
+  background: #6a5acd;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #ccc;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 14px;
+}
+
+th {
+  background: #f4f4f4;
+}
+
+.edit-btn {
+  background: #4caf50;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: #fff;
+}
+
+/* Scrollbar (dynamic via JS) */
+.display-section {
+  transition: all 0.3s ease;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+}
+
+    </style>
+
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header-title">🎓 Student Registration System</h1>
+            <p class="header-description">Efficiently manage student records with our comprehensive registration platform. Add, edit, and delete student information seamlessly.</p>
+        </div>
+    </header>
+
+    <main class="container">
+    <section class="form-section">
+        <h2 class="section-title">Register New Student</h2>
+
+        <form id="studentForm" class="student-form" novalidate>
+            <div class="form-group">
+                <label class="form-label">Student Name <span class="required">*</span></label>
+                <input type="text" id="studentName" class="form-input">
+                <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Student ID <span class="required">*</span></label>
+                <input type="text" id="studentId" class="form-input">
+                <span class="error-message" id="idError"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email ID <span class="required">*</span></label>
+                <input type="email" id="emailId" class="form-input">
+                <span class="error-message" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Contact Number <span class="required">*</span></label>
+                <input type="tel" id="contactNumber" class="form-input">
+                <span class="error-message" id="contactError"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <span class="btn-text">Add Student</span>
+                </button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="display-section">
+        <h2 class="section-title">Registered Students</h2>
+        <p>Total Students: <strong id="studentCount">0</strong></p>
+
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentsTableBody">
+                <tr class="no-records">
+                    <td colspan="6">No students added yet.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+   
+<script>
+    const nameInput = document.getElementById("studentName");
+const idInput = document.getElementById("studentId");
+const emailInput = document.getElementById("email");
+const contactInput = document.getElementById("contact");
+const tableBody = document.getElementById("tableBody");
+const totalStudents = document.getElementById("totalStudents");
+
+let students = JSON.parse(localStorage.getItem("students")) || [];
+let editIndex = null;
+
+/* ---------- Validation ---------- */
+function validateInputs() {
+  const nameRegex = /^[A-Za-z\s]+$/;
+  const idRegex = /^[0-9]+$/;
+  const contactRegex = /^[0-9]{10,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!nameInput.value || !idInput.value || !emailInput.value || !contactInput.value) {
+    alert("All fields are required");
+    return false;
+  }
+
+  if (!nameRegex.test(nameInput.value)) {
+    alert("Name should contain only letters");
+    return false;
+  }
+
+  if (!idRegex.test(idInput.value)) {
+    alert("Student ID must be numeric");
+    return false;
+  }
+
+  if (!contactRegex.test(contactInput.value)) {
+    alert("Contact number must be at least 10 digits");
+    return false;
+  }
+
+  if (!emailRegex.test(emailInput.value)) {
+    alert("Invalid email format");
+    return false;
+  }
+
+  return true;
+}
+
+/* ---------- Add / Update ---------- */
+function addStudent() {
+  if (!validateInputs()) return;
+
+  const student = {
+    name: nameInput.value,
+    id: idInput.value,
+    email: emailInput.value,
+    contact: contactInput.value
+  };
+
+  if (editIndex !== null) {
+    students[editIndex] = student;
+    editIndex = null;
+  } else {
+    students.push(student);
+  }
+
+  localStorage.setItem("students", JSON.stringify(students));
+  clearForm();
+  renderTable();
+}
+
+/* ---------- Render Table ---------- */
+function renderTable() {
+  tableBody.innerHTML = "";
+
+  students.forEach((student, index) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${student.name}</td>
+      <td>${student.id}</td>
+      <td>${student.email}</td>
+      <td>${student.contact}</td>
+      <td>
+        <button class="edit-btn" onclick="editStudent(${index})">Edit</button>
+        <button class="delete-btn" onclick="deleteStudent(${index})">Delete</button>
+      </td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+
+  totalStudents.textContent = students.length;
+  addScrollbar();
+}
+
+/* ---------- Edit ---------- */
+function editStudent(index) {
+  const student = students[index];
+  nameInput.value = student.name;
+  idInput.value = student.id;
+  emailInput.value = student.email;
+  contactInput.value = student.contact;
+  editIndex = index;
+}
+
+/* ---------- Delete ---------- */
+function deleteStudent(index) {
+  if (confirm("Are you sure you want to delete?")) {
+    students.splice(index, 1);
+    localStorage.setItem("students", JSON.stringify(students));
+    renderTable();
+  }
+}
+
+/* ---------- Scrollbar (Dynamic) ---------- */
+function addScrollbar() {
+  const displaySection = document.querySelector(".display-section");
+
+  if (displaySection.scrollHeight > 350) {
+    displaySection.style.maxHeight = "350px";
+    displaySection.style.overflowY = "auto";
+  } else {
+    displaySection.style.overflowY = "visible";
+  }
+}
+
+/* ---------- Clear ---------- */
+function clearForm() {
+  nameInput.value = "";
+  idInput.value = "";
+  emailInput.value = "";
+  contactInput.value = "";
+}
+
+/* ---------- Load ---------- */
+renderTable();
+
+</script>
+</body>
+</html>

@@ -1,493 +1,152 @@
-/* ============================================
-   CSS Reset and Base Styles
-   ============================================ */
+/* Global reset and basic font setup */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-:root {
-    /* Color Palette */
-    --primary-color: #4f46e5;
-    --primary-dark: #4338ca;
-    --primary-light: #6366f1;
-    --secondary-color: #64748b;
-    --success-color: #10b981;
-    --danger-color: #ef4444;
-    --warning-color: #f59e0b;
-    
-    /* Neutral Colors */
-    --white: #ffffff;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
-    
-    /* Typography */
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-size-base: 16px;
-    
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 0.75rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-2xl: 3rem;
-    
-    /* Border Radius */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
 
 body {
-    font-family: var(--font-family);
-    font-size: var(--font-size-base);
-    line-height: 1.6;
-    color: var(--gray-800);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding-bottom: var(--spacing-xl);
+  margin: 0;
+  background: #f4f6f8;
+  color: #333;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
+/* ================= HEADER SECTION ================= */
+.top-header {
+  background: #4f46e5;     /* Primary theme color */
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
-/* ============================================
-   Header Styles
-   ============================================ */
-.header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: var(--white);
-    padding: var(--spacing-2xl) 0;
-    text-align: center;
-    box-shadow: var(--shadow-lg);
+.top-header h1 {
+  margin: 0;
 }
 
-.header-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-md);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.top-header p {
+  margin-top: 5px;
+  font-size: 14px;
+  opacity: 0.9;
 }
 
-.header-description {
-    font-size: 1.125rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.95;
-    line-height: 1.7;
+/* ================= MAIN CONTAINER ================= */
+.app-container {
+  max-width: 900px;       
+  margin: 20px auto;
+  padding: 15px;
 }
 
-/* ============================================
-   Main Content
-   ============================================ */
-.main-content {
-    padding: var(--spacing-2xl) 0;
+/* ================= CARD STYLES ================= */
+/* Used for form and display sections */
+.form-section,
+.display-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;      
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* ============================================
-   Form Section
-   ============================================ */
-.form-section {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    margin-bottom: var(--spacing-2xl);
-    box-shadow: var(--shadow-xl);
-}
-
+/* Section headings */
 .section-title {
-    font-size: 1.75rem;
-    color: var(--gray-900);
-    margin-bottom: var(--spacing-lg);
-    font-weight: 600;
-    border-bottom: 3px solid var(--primary-color);
-    padding-bottom: var(--spacing-sm);
+  margin-bottom: 15px;
+  border-bottom: 2px solid #4f46e5;
+  padding-bottom: 5px;
 }
 
-.student-form {
-    display: grid;
-    gap: var(--spacing-lg);
-}
-
+/* ================= FORM STYLES ================= */
 .form-group {
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 12px;
 }
 
 .form-label {
-    font-weight: 500;
-    color: var(--gray-700);
-    margin-bottom: var(--spacing-xs);
-    font-size: 0.95rem;
-}
-
-.required {
-    color: var(--danger-color);
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .form-input {
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: var(--gray-50);
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
 }
 
-.form-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    background: var(--white);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-}
-
-.form-input.error {
-    border-color: var(--danger-color);
-    background: #fef2f2;
-}
-
-.error-message {
-    color: var(--danger-color);
-    font-size: 0.875rem;
-    margin-top: var(--spacing-xs);
-    min-height: 1.25rem;
-    display: block;
-}
-
-/* ============================================
-   Form Actions
-   ============================================ */
+/* Form buttons container */
 .form-actions {
-    display: flex;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
+  display: flex;
+  gap: 10px;
 }
 
+/* Common button styling */
 .btn {
-    padding: 0.875rem 2rem;
-    border: none;
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
+/* Primary action button */
 .btn-primary {
-    background: var(--primary-color);
-    color: var(--white);
-    box-shadow: var(--shadow-md);
+  background: #4f46e5;
+  color: white;
 }
 
-.btn-primary:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn-primary:active {
-    transform: translateY(0);
-}
-
+/* Secondary action button */
 .btn-secondary {
-    background: var(--gray-200);
-    color: var(--gray-700);
+  background: #9ca3af;
+  color: white;
 }
 
-.btn-secondary:hover {
-    background: var(--gray-300);
-}
-
-.btn-edit {
-    background: var(--warning-color);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    flex: none;
-}
-
-.btn-edit:hover {
-    background: #d97706;
-}
-
-.btn-delete {
-    background: var(--danger-color);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    flex: none;
-}
-
-.btn-delete:hover {
-    background: #dc2626;
-}
-
-/* ============================================
-   Display Section
-   ============================================ */
-.display-section {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    box-shadow: var(--shadow-xl);
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-lg);
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-}
-
-.student-count {
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.student-count span {
-    font-size: 1.25rem;
-}
-
-/* ============================================
-   Table Styles
-   ============================================ */
+/* ================= TABLE STYLES ================= */
 .table-container {
-    overflow-x: auto;
-    overflow-y: auto;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--gray-200);
-    background: var(--white);
+  overflow-x: auto; /* Enables horizontal scroll on small screens */
 }
 
 .students-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
-.students-table thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: var(--white);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+.students-table th,
+.students-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
 }
 
 .students-table th {
-    padding: 1rem;
-    text-align: left;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.5px;
+  background: #4f46e5;
+  color: white;
 }
 
-.students-table tbody tr {
-    border-bottom: 1px solid var(--gray-200);
-    transition: background-color 0.2s ease;
+/* Action buttons inside table */
+.btn-edit {
+  background: #f59e0b;
+  color: white;
 }
 
-.students-table tbody tr:hover {
-    background: var(--gray-50);
+.btn-delete {
+  background: #ef4444;
+  color: white;
 }
 
-.students-table tbody tr:last-child {
-    border-bottom: none;
-}
-
-.students-table td {
-    padding: 1rem;
-    color: var(--gray-700);
-}
-
-.no-records {
-    text-align: center;
-    color: var(--gray-500);
-    font-style: italic;
-}
-
-.students-table tbody tr td:last-child {
-    display: flex;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    align-items: center;
-}
-
-/* ============================================
-   Footer
-   ============================================ */
+/* ================= FOOTER ================= */
 .footer {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-    text-align: center;
-    padding: var(--spacing-lg) 0;
-    margin-top: var(--spacing-2xl);
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
 }
 
-/* ============================================
-   Responsive Design - Mobile (≤ 640px)
-   ============================================ */
+/* ================= MOBILE RESPONSIVENESS ================= */
+/* Adjust layout for mobile screens */
 @media (max-width: 640px) {
-    .header-title {
-        font-size: 1.75rem;
-    }
-    
-    .header-description {
-        font-size: 1rem;
-    }
-    
-    .form-section,
-    .display-section {
-        padding: var(--spacing-lg);
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
-    }
-    
-    .section-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .student-count {
-        text-align: center;
-    }
-    
-    /* Make table scrollable horizontally on mobile */
-    .students-table {
-        font-size: 0.875rem;
-    }
-    
-    .students-table th,
-    .students-table td {
-        padding: 0.75rem 0.5rem;
-        white-space: nowrap;
-    }
-    
-    .students-table tbody tr td:last-child {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .btn-edit,
-    .btn-delete {
-        width: 100%;
-        padding: 0.5rem;
-    }
-}
+  .form-actions {
+    flex-direction: column; /* Stack buttons vertically */
+  }
 
-/* ============================================
-   Responsive Design - Tablet (641px - 1024px)
-   ============================================ */
-@media (min-width: 641px) and (max-width: 1024px) {
-    .header-title {
-        font-size: 2rem;
-    }
-    
-    .header-description {
-        font-size: 1.05rem;
-    }
-    
-    .container {
-        padding: 0 var(--spacing-lg);
-    }
-    
-    .student-form {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .form-group:nth-child(3) {
-        grid-column: 1 / -1;
-    }
-    
-    .form-actions {
-        grid-column: 1 / -1;
-    }
-    
-    .students-table {
-        font-size: 0.9rem;
-    }
-}
-
-/* ============================================
-   Responsive Design - Desktop (≥ 1025px)
-   ============================================ */
-@media (min-width: 1025px) {
-    .student-form {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .form-actions {
-        grid-column: 1 / -1;
-        justify-content: flex-start;
-    }
-    
-    .btn {
-        flex: 0 1 auto;
-        min-width: 150px;
-    }
-}
-
-/* ============================================
-   Animations
-   ============================================ */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.students-table tbody tr {
-    animation: fadeIn 0.3s ease;
-}
-
-/* ============================================
-   Utility Classes
-   ============================================ */
-.hidden {
-    display: none !important;
-}
-
-.text-center {
-    text-align: center;
+  .students-table th,
+  .students-table td {
+    font-size: 12px;
+  }
 }
