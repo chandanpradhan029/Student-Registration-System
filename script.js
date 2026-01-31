@@ -1,7 +1,3 @@
-// ============================================
-// Student Registration System - Main JavaScript
-// ============================================
-
 /**
  * Global Variables and Constants
  */
