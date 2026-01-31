@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Registration System - Manage student records with add, edit, and delete functionalities">
+    <meta name="keywords" content="student registration, student management, education system">
+    <meta name="author" content="Student Management Team">
+    <title>Student Registration System | Manage Student Records</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header-title">🎓 Student Registration System</h1>
+            <p class="header-description">Efficiently manage student records with our comprehensive registration platform. Add, edit, and delete student information seamlessly.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Registration Form Section -->
+            <section class="form-section" aria-label="Student Registration Form">
+                <h2 class="section-title">Register New Student</h2>
+                <form id="studentForm" class="student-form" novalidate>
+                    <div class="form-group">
+                        <label for="studentName" class="form-label">
+                            Student Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="studentName" 
+                            name="studentName" 
+                            class="form-input"
+                            placeholder="Enter full name (letters only)"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentId" class="form-label">
+                            Student ID <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="studentId" 
+                            name="studentId" 
+                            class="form-input"
+                            placeholder="Enter student ID (numbers only)"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="error-message" id="idError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailId" class="form-label">
+                            Email ID <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="emailId" 
+                            name="emailId" 
+                            class="form-input"
+                            placeholder="student@example.com"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactNumber" class="form-label">
+                            Contact Number <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="contactNumber" 
+                            name="contactNumber" 
+                            class="form-input"
+                            placeholder="Enter 10-digit contact number"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="error-message" id="contactError"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-text">Add Student</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">
+                            <span class="btn-text">Cancel</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Display Section -->
+            <section class="display-section" aria-label="Registered Students List">
+                <div class="section-header">
+                    <h2 class="section-title">Registered Students</h2>
+                    <div class="student-count">
+                        Total Students: <span id="studentCount">0</span>
+                    </div>
+                </div>
+
+                <div class="table-container" id="tableContainer">
+                    <table class="students-table" id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Student ID</th>
+                                <th scope="col">Email ID</th>
+                                <th scope="col">Contact Number</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <tr class="no-records">
+                                <td colspan="6">No students registered yet. Start by adding a new student!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Student Registration System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
