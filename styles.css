@@ -123,11 +123,16 @@ body {
 .btn-edit {
   background: #f59e0b;
   color: white;
+  border: none;
+  padding: 7px;
+  
 }
 
 .btn-delete {
   background: #ef4444;
   color: white;
+  border: none;
+  padding: 7px;
 }
 
 /* ================= FOOTER ================= */
