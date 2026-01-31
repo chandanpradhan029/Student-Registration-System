@@ -19,7 +19,7 @@ All data is stored in the browser using **localStorage**, so records are not los
 ## 🛠 Technologies Used
 - HTML5  
 - CSS3  
-- JavaScript (Vanilla)  
+- JavaScript 
 - LocalStorage API  
 
 ## 📁 Project Structure
